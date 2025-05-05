@@ -45,6 +45,17 @@ export function Contact({ darkMode }) {
               <span>GitHub</span>
             </a>
             <a
+              href="mailto:hongtonghea@gmail.com"
+              className={`flex items-center gap-2 ${
+                darkMode
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-600 hover:text-indigo-600"
+              } transition-colors`}
+            >
+              <FaEnvelope size={24} />
+              <span>Email</span>
+            </a>
+            <a
               href="https://www.facebook.com/share/1Fghx7gEcY/"
               className={`flex items-center gap-2 ${
                 darkMode
@@ -65,17 +76,6 @@ export function Contact({ darkMode }) {
             >
               <FaTelegram size={24} />
               <span>Telegarm</span>
-            </a>
-            <a
-              href="mailto:hongtonghea@gmail.com"
-              className={`flex items-center gap-2 ${
-                darkMode
-                  ? "text-gray-300 hover:text-white"
-                  : "text-gray-600 hover:text-indigo-600"
-              } transition-colors`}
-            >
-              <FaEnvelope size={24} />
-              <span>Email</span>
             </a>
           </div>
         </div>
