@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 import { TypingAnimation } from "./TypingAnimation";
 import { FaGithub, FaFacebook, FaEnvelope, FaTelegram } from "react-icons/fa";
+import myImage from "../assets/image/my-image.jpg";
 
 export function Hero({ darkMode }) {
   return (
@@ -16,7 +17,7 @@ export function Hero({ darkMode }) {
         <div className="flex justify-center mb-12">
           <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden border-2 border-white-500 shadow-lg">
             <img
-              src="src/assets/image/my-image.jpg"
+              src={myImage}
               alt="Profile Photo"
               className="w-full h-full object-cover"
             />
