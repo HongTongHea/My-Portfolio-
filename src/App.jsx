@@ -9,7 +9,7 @@ import { Contact } from "./components/Contact";
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
-  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     if (darkMode) {
