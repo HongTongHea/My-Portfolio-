@@ -1,0 +1,44 @@
+import React, { useState, useEffect } from "react";
+import { Navigation } from "./components/Navigation";
+import { Hero } from "./components/Hero";
+import { About } from "./components/About";
+import { Projects } from "./components/Projects";
+// import { Projects } from "./components/Projects";
+import { Contact } from "./components/Contact";
+// import { Footer } from "./components/Footer";
+
+function App() {
+  const [darkMode, setDarkMode] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+
+  return (
+    <div
+      className={`min-h-screen ${darkMode ? "dark bg-gray-900" : "bg-gray-50"}`}
+    >
+      <Navigation
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+      />
+      <Hero darkMode={darkMode} />
+      <About darkMode={darkMode} />
+      <Projects darkMode={darkMode} />
+      <Contact darkMode={darkMode} />
+      {/* 
+      <Projects darkMode={darkMode} />
+ 
+      <Footer darkMode={darkMode} /> */}
+    </div>
+  );
+}
+
+export default App;
