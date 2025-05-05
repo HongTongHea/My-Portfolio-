@@ -10,7 +10,7 @@ export function Projects({ darkMode }) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2
-          className={`text-4xl sm:text4xl font-bold text-left mb-16 ${
+          className={`text-4xl sm:text4xl font-bold text-center md:text-left mb-16 ${
             darkMode ? "text-white" : "text-gray-900"
           }`}
         >

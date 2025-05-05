@@ -76,7 +76,7 @@ export function Hero({ darkMode }) {
             </button>
           </div>
           <div className="flex justify-center mt-8 mb-4">
-            <div className="flex gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <a
                 href="https://github.com/HongTongHea"
                 className={`flex items-center gap-2 ${
@@ -87,6 +87,17 @@ export function Hero({ darkMode }) {
               >
                 <FaGithub size={24} />
                 <span>GitHub</span>
+              </a>
+              <a
+                href="mailto:hongtonghea@gmail.com"
+                className={`flex items-center gap-2 ${
+                  darkMode
+                    ? "text-gray-300 hover:text-white"
+                    : "text-gray-600 hover:text-indigo-600"
+                } transition-colors`}
+              >
+                <FaEnvelope size={24} />
+                <span>Email</span>
               </a>
               <a
                 href="https://www.facebook.com/share/1Fghx7gEcY/"
@@ -109,17 +120,6 @@ export function Hero({ darkMode }) {
               >
                 <FaTelegram size={24} />
                 <span>Telegarm</span>
-              </a>
-              <a
-                href="mailto:hongtonghea@gmail.com"
-                className={`flex items-center gap-2 ${
-                  darkMode
-                    ? "text-gray-300 hover:text-white"
-                    : "text-gray-600 hover:text-indigo-600"
-                } transition-colors`}
-              >
-                <FaEnvelope size={24} />
-                <span>Email</span>
               </a>
             </div>
           </div>
