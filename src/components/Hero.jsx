@@ -16,7 +16,7 @@ export function Hero({ darkMode }) {
         <div className="flex justify-center mb-12">
           <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden border-2 border-white-500 shadow-lg">
             <img
-              src="src/assets/my-image.jpg"
+              src="src/assets/image/my-image.jpg"
               alt="Profile Photo"
               className="w-full h-full object-cover"
             />
