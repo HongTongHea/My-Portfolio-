@@ -18,7 +18,7 @@ export function About({ darkMode }) {
           {/* About Me Content */}
           <div className="w-full md:w-2/3 text-center md:text-left">
             <h1
-              className={`text-4xl sm:text4xl font-bold  ${
+              className={`text-3xl sm:text3xl font-bold  ${
                 darkMode ? "text-white" : "text-gray-900"
               } mb-6`}
             >

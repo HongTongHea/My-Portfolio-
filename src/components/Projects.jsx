@@ -69,7 +69,7 @@ export function Projects({ darkMode }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Featured Projects Section */}
         <h2
-          className={`text-4xl sm:text-4xl font-bold text-center md:text-left mb-10 ${
+          className={`text-3xl sm:text-3xl font-bold text-center md:text-left mb-10 ${
             darkMode ? "text-white" : "text-gray-900"
           }`}
         >
@@ -89,7 +89,7 @@ export function Projects({ darkMode }) {
               <Code2 className="text-white" size={24} />
             </div>
             <h3
-              className={`text-xl font-bold mb-4 ${
+              className={`text-3xl sm:text-3xl font-bold mb-4 ${
                 darkMode ? "text-white" : "text-gray-900"
               }`}
             >
@@ -113,7 +113,7 @@ export function Projects({ darkMode }) {
               <Palette className="text-white" size={24} />
             </div>
             <h3
-              className={`text-xl font-bold mb-4 ${
+              className={`text-3xl sm:text-3xl font-bold mb-4 ${
                 darkMode ? "text-white" : "text-gray-900"
               }`}
             >
@@ -153,7 +153,7 @@ export function Projects({ darkMode }) {
         {/* Web Dev Projects Section */}
         <div className="mb-16">
           <h2
-            className={`text-4xl sm:text-4xl font-bold text-center md:text-left mb-4 ${
+            className={`text-3xl sm:text-3xl font-bold text-center md:text-left mb-4 ${
               darkMode ? "text-white" : "text-gray-900"
             }`}
           >
@@ -171,7 +171,7 @@ export function Projects({ darkMode }) {
         {/* Graphic Projects Section */}
         <div className="mb-16">
           <h2
-            className={`text-4xl sm:text-4xl font-bold text-center md:text-left mb-8 ${
+            className={`text-3xl sm:text-3xl font-bold text-center md:text-left mb-8 ${
               darkMode ? "text-white" : "text-gray-900"
             }`}
           >
