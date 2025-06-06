@@ -3,10 +3,11 @@ import { Code2, Palette, X } from "lucide-react";
 import { MdDesignServices } from "react-icons/md";
 import poster1 from "../assets/image/King Sihamoni's Birthday 1.jpg";
 import poster2 from "../assets/image/King Birthright 1.jpg";
-import poster3 from "../assets/image/Vesak Bochea.jpg";
-import poster4 from "../assets/image/Royal Ploughing Ceremony.jpg";
+import poster3 from "../assets/image/Queen Mother's Birthday 2.jpg";
+import poster4 from "../assets/image/Queen Mother's Birthday Hotel Link.jpg";
 import poster5 from "../assets/image/International Labor Day.jpg";
 import poster6 from "../assets/image/វិសាខបូជា (2).jpg";
+import poster7 from "../assets/image/Royal Ploughing Ceremony.jpg";
 const posterProjects = [
   {
     id: 1,
@@ -23,13 +24,14 @@ const posterProjects = [
   {
     id: 3,
     image: poster3,
-    title: "Vesak Bochea",
+    title: "Queen Mother's Birthday",
     category: "Holiday Poster",
   },
+
   {
     id: 4,
     image: poster4,
-    title: "Royal Ploughing Ceremony",
+    title: "Queen Mother's Birthday",
     category: "Holiday Poster",
   },
   {
@@ -45,6 +47,14 @@ const posterProjects = [
     title: "Vesak Bochea",
     category: "Holiday Poster",
   },
+
+  {
+    id: 7,
+    image: poster7,
+    title: "Royal Ploughing Ceremony",
+    category: "Holiday Poster",
+  },
+
   // Add more projects here as needed
 ];
 
@@ -157,7 +167,7 @@ export function Projects({ darkMode }) {
               darkMode ? "text-white" : "text-gray-900"
             }`}
           >
-            Web Dev Projects
+            Web Development Projects
           </h2>
           <p
             className={`text-2xl text-center mt-10 mb-10 ${
@@ -175,7 +185,7 @@ export function Projects({ darkMode }) {
               darkMode ? "text-white" : "text-gray-900"
             }`}
           >
-            Graphic Projects
+            Graphic Design Projects
           </h2>
 
           {posterProjects.length > 0 ? (
