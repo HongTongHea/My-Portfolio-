@@ -8,51 +8,86 @@ import poster4 from "../assets/image/Queen Mother's Birthday Hotel Link.jpg";
 import poster5 from "../assets/image/International Labor Day.jpg";
 import poster6 from "../assets/image/វិសាខបូជា (2).jpg";
 import poster7 from "../assets/image/Royal Ploughing Ceremony.jpg";
+import Image1 from "../assets/image/image.png";
+import Image2 from "../assets/image/image 2.png";
+import Image3 from "../assets/image/imge3.png";
+
+const webProjects = [
+  {
+    id: 1,
+    title: "TOUR & TRAVEl",
+    description:
+      "A travel agency website showcasing various tours and travel packages.",
+    image: Image1,
+    viewUrl: "https://tour-travel-kohl.vercel.app/",
+  },
+  {
+    id: 2,
+    title: "CAR DEALER WEBSITE",
+    description:
+      "A car dealer website featuring a wide range of vehicles for sale.",
+    image: Image2,
+    viewUrl: "https://car-dealer-website-ten.vercel.app/",
+  },
+  {
+    id: 3,
+    title: "TUTORIAL WEBSITE",
+    description:
+      "A comprehensive tutorial website offering courses on various subjects.",
+    image: Image3,
+    viewUrl: "https://website-tutor-rho.vercel.app/",
+  },
+];
+
 const posterProjects = [
   {
     id: 1,
     image: poster1,
     title: "King Sihamoni's Birthday",
-    category: "Holiday Poster",
+    category:
+      "ព្រះ​រាជ​ពិធី​បុណ្យ​ចម្រើន​ព្រះ​ជន្ម ព្រះ​ករុណា​ព្រះ​បាទ​សម្តេច​ព្រះ​បរម​នាថ នរោត្តម សីហមុនី ព្រះ​មហាក្សត្រ​នៃ​ព្រះរាជាណាចក្រ​កម្ពុជា",
   },
   {
     id: 2,
     image: poster2,
     title: "King Sihamoni's Birthday",
-    category: "Holiday Poster",
+    category:
+      "ព្រះ​រាជ​ពិធី​បុណ្យ​ចម្រើន​ព្រះ​ជន្ម ព្រះ​ករុណា​ព្រះ​បាទ​សម្តេច​ព្រះ​បរម​នាថ នរោត្តម សីហមុនី ព្រះ​មហាក្សត្រ​នៃ​ព្រះរាជាណាចក្រ​កម្ពុជា",
   },
   {
     id: 3,
     image: poster3,
     title: "Queen Mother's Birthday",
-    category: "Holiday Poster",
+    category:
+      "ព្រះ​រាជ​ពិធី​បុណ្យ​ចម្រើន​ព្រះ​ជន្ម សម្តេច​ព្រះ​មហាក្សត្រី នរោត្តម មុនិនាថ សីហនុ ព្រះ​វររាជ​មាតា​ជាតិ​ខ្មែរ",
   },
 
   {
     id: 4,
     image: poster4,
     title: "Queen Mother's Birthday",
-    category: "Holiday Poster",
+    category:
+      "ព្រះ​រាជ​ពិធី​បុណ្យ​ចម្រើន​ព្រះ​ជន្ម សម្តេច​ព្រះ​មហាក្សត្រី នរោត្តម មុនិនាថ សីហនុ ព្រះ​វររាជ​មាតា​ជាតិ​ខ្មែរ",
   },
   {
     id: 5,
     image: poster5,
     title: "International Labor Day",
-    category: "Holiday Poster",
+    category: "ទិវា​ពលកម្ម​អន្តរជាតិ ខួបលើកទី១៣៩",
   },
 
   {
     id: 6,
     image: poster6,
     title: "Vesak Bochea",
-    category: "Holiday Poster",
+    category: "ពិធី​បុណ្យ​វិសាខ​បូជា ​នៃ​បុណ្យព្រះ​រាជាណាចក្រ​កម្ពុជា",
   },
 
   {
     id: 7,
     image: poster7,
     title: "Royal Ploughing Ceremony",
-    category: "Holiday Poster",
+    category: "ព្រះ​រាជ​ពិធី​ច្រត់​ព្រះ​នង្គ័ល នៃព្រះ​រាជាណាចក្រ​កម្ពុជា",
   },
 
   // Add more projects here as needed
@@ -89,7 +124,7 @@ export function Projects({ darkMode }) {
         <div className="grid md:grid-cols-3 gap-6 mb-16">
           {/* Web Development Card */}
           <div
-            className={`p-8 rounded-2xl ${
+            className={`p-8 rounded-2xl transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl ${
               darkMode
                 ? "bg-gradient-to-br from-gray-700 to-gray-800"
                 : "bg-gradient-to-br from-purple-50 to-indigo-50"
@@ -113,7 +148,7 @@ export function Projects({ darkMode }) {
 
           {/* Graphic Design Card */}
           <div
-            className={`p-8 rounded-2xl ${
+            className={`p-8 rounded-2xl transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl ${
               darkMode
                 ? "bg-gradient-to-br from-gray-800 to-gray-700"
                 : "bg-gradient-to-br from-indigo-50 to-purple-50"
@@ -137,7 +172,7 @@ export function Projects({ darkMode }) {
 
           {/* UX/UI Design Card */}
           <div
-            className={`p-8 rounded-2xl ${
+            className={`p-8 rounded-2xl transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl ${
               darkMode
                 ? "bg-gradient-to-br from-gray-800 to-gray-700"
                 : "bg-gradient-to-br from-indigo-50 to-purple-50"
@@ -169,13 +204,58 @@ export function Projects({ darkMode }) {
           >
             Web Development Projects
           </h2>
-          <p
-            className={`text-2xl text-center mt-10 mb-10 ${
-              darkMode ? "text-gray-400" : "text-gray-500"
-            }`}
-          >
-            Coming Soon - Exciting projects in development!
-          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {webProjects.map((project) => (
+              <div
+                key={project.id}
+                className={`group relative rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:shadow-2xl hover:-translate-y-1 ${
+                  darkMode ? "bg-gray-800" : "bg-white"
+                }`}
+              >
+                {/* Project Image */}
+                <img
+                  src={project.image}
+                  alt=""
+                  className="w-full h-48 object-cover"
+                />
+
+                {/* Project Content */}
+                <div className="p-5">
+                  <h3
+                    className={`text-xl font-bold mb-2 ${
+                      darkMode ? "text-white" : "text-gray-900"
+                    }`}
+                  >
+                    {project.title}
+                  </h3>
+                  <p
+                    className={`mb-4 ${
+                      darkMode ? "text-gray-300" : "text-gray-600"
+                    }`}
+                  >
+                    {project.description}
+                  </p>
+                </div>
+
+                {/* Hover Button Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300">
+                  <a
+                    href={project.viewUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`px-4 py-2 text-sm font-semibold rounded-lg me ${
+                      darkMode
+                        ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                        : "bg-white text-indigo-700 hover:bg-indigo-100"
+                    }`}
+                  >
+                    View Demo
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Graphic Projects Section */}
