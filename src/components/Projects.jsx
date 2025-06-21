@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Code2, Palette, X } from "lucide-react";
 import { MdDesignServices } from "react-icons/md";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import poster1 from "../assets/image/King Sihamoni's Birthday 1.jpg";
 import poster2 from "../assets/image/King Birthright 1.jpg";
 import poster3 from "../assets/image/Queen Mother's Birthday 2.jpg";
@@ -257,7 +258,21 @@ export function Projects({ darkMode }) {
                         : "bg-white text-indigo-700 hover:bg-indigo-100"
                     }`}
                   >
-                    View Demo
+                    <FaExternalLinkAlt
+                      className="inline-block mr-2"
+                      size={16}
+                      color={darkMode ? "white" : "black"}
+                      style={{ verticalAlign: "middle" }}
+                    />
+                    <span
+                      className={`inline-block${
+                        darkMode
+                          ? "bg-gray-800 text-white"
+                          : "bg-white text-black"
+                      }`}
+                    >
+                      View Demo
+                    </span>
                   </a>
                 </div>
               </div>
@@ -272,7 +287,7 @@ export function Projects({ darkMode }) {
               darkMode ? "text-white" : "text-gray-900"
             }`}
           >
-            Graphic Design Projects
+            Graphic Design Artwork
           </h2>
 
           {posterProjects.length > 0 ? (

@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div
-      className={`min-h-screen ${darkMode ? "dark bg-gray-900" : "bg-gray-50"}`}
+      className={`min-h-screen ${darkMode ? "dark bg-gray-900" : "bg-white"}`}
     >
       <Navigation
         darkMode={darkMode}
