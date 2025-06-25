@@ -3,8 +3,21 @@ import { ArrowRight } from "lucide-react";
 import { TypingAnimation } from "./TypingAnimation";
 import { FaGithub, FaFacebook, FaEnvelope, FaTelegram } from "react-icons/fa";
 import myImage from "../assets/image/my-image.jpg";
+// Make sure to import your CV file
+import cvFile from "../assets/cv/CV Mr. Hong Tong hea.pdf"; // Update this path to your actual CV file
 
 export function Hero({ darkMode }) {
+  // Function to handle CV download
+  const handleDownloadCV = () => {
+    // Create a temporary anchor element
+    const link = document.createElement("a");
+    link.href = cvFile;
+    link.download = "HongTongHea_CV.pdf"; // This will be the downloaded file name
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="relative overflow-hidden" id="hero">
       <div
@@ -66,6 +79,7 @@ export function Hero({ darkMode }) {
               Contact Me <ArrowRight size={20} />
             </button>
             <button
+              onClick={handleDownloadCV}
               className={`border-2 ${
                 darkMode
                   ? "border-white text-white hover:bg-white hover:text-gray-900"
@@ -79,6 +93,8 @@ export function Hero({ darkMode }) {
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <a
                 href="https://github.com/HongTongHea"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`flex items-center gap-2 ${
                   darkMode
                     ? "text-gray-300 hover:text-white"
@@ -101,6 +117,8 @@ export function Hero({ darkMode }) {
               </a>
               <a
                 href="https://www.facebook.com/share/1Fghx7gEcY/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`flex items-center gap-2 ${
                   darkMode
                     ? "text-gray-300 hover:text-white"
@@ -112,6 +130,8 @@ export function Hero({ darkMode }) {
               </a>
               <a
                 href="https://t.me/Tonghear"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`flex items-center gap-2 ${
                   darkMode
                     ? "text-gray-300 hover:text-white"

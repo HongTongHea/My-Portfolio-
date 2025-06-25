@@ -10,6 +10,7 @@ import poster5 from "../assets/image/International Labor Day.jpg";
 import poster6 from "../assets/image/វិសាខបូជា (2).jpg";
 import poster7 from "../assets/image/Royal Ploughing Ceremony.jpg";
 import poster8 from "../assets/image/E-Menu Poster.jpg";
+import poster9 from "../assets/image/Match Day UYFC.jpg";
 import Image1 from "../assets/image/image.png";
 import Image2 from "../assets/image/image 2.png";
 import Image3 from "../assets/image/imge3.png";
@@ -96,6 +97,12 @@ const posterProjects = [
     image: poster8,
     title: "E-Menu Poster",
     category: "E-Menu Poster for Hotel",
+  },
+  {
+    id: 9,
+    image: poster9,
+    title: "Match Day UYFC",
+    category: "Poster for Football Match",
   },
 
   // Add more projects here as needed

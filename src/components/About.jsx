@@ -113,6 +113,70 @@ export function About({ darkMode }) {
                 ))}
               </div>
             </div>
+
+            {/* Work Experience Timeline */}
+            <div className="mt-12">
+              <div className="flex items-center gap-2 mb-4">
+                <h2
+                  className={`text-xl font-bold ${
+                    darkMode ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  Work Experience
+                </h2>
+              </div>
+
+              <div className="space-y-4 mt-6 text-left">
+                {[
+                  {
+                    year: "2025 (Graphic Designer)",
+                    detail: "6-Month Work as a Graphic Designer at EOT.",
+                    color: "bg-teal-500",
+                    responsibilities: [
+                      "Designed Poster Products for Company.",
+                      "Designed Poster Artwork for Social Media.",
+                    ],
+                  },
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className={`relative pl-8 ${
+                      index < 2 ? "pb-5" : ""
+                    } border-l border-gray-200 dark:border-gray-700`}
+                  >
+                    <div
+                      className={`absolute top-0 left-0 w-3 h-3 -ml-1.5 rounded-full ${item.color}`}
+                    ></div>
+                    <p
+                      className={`font-medium ${
+                        darkMode ? "text-white" : "text-gray-800"
+                      }`}
+                    >
+                      {item.year}
+                    </p>
+                    <p
+                      className={`${
+                        darkMode ? "text-gray-300" : "text-gray-600"
+                      }`}
+                    >
+                      {item.detail}
+                    </p>
+                    <ul className="mt-2 ml-4 list-disc">
+                      {item.responsibilities.map((responsibility, i) => (
+                        <li
+                          key={i}
+                          className={`text-sm ${
+                            darkMode ? "text-gray-400" : "text-gray-500"
+                          }`}
+                        >
+                          {responsibility}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
