@@ -85,11 +85,11 @@ export function Navigation({
                 const el = document.getElementById("contact");
                 if (el) el.scrollIntoView({ behavior: "smooth" });
               }}
-              className={`${
+              className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
                 darkMode
-                  ? "text-gray-300 hover:text-white"
-                  : "text-gray-600 hover:text-gray-900"
-              } transition-colors`}
+                  ? "bg-white text-gray-900 hover:bg-gray-200"
+                  : "bg-gray-900 text-white hover:bg-gray-700"
+              }`}
             >
               HIRE ME!
             </a>
@@ -191,22 +191,6 @@ export function Navigation({
               PROJECTS
             </a>
             <a
-              role="button"
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                const el = document.getElementById("contact");
-                if (el) el.scrollIntoView({ behavior: "smooth" });
-                setIsMenuOpen(false);
-              }}
-              className={`${
-                darkMode
-                  ? "text-gray-300 hover:text-white"
-                  : "text-gray-600 hover:text-gray-900"
-              } transition-colors`}
-            >
-              HIRE ME!
-            </a>
           </div>
         </div>
       )}
