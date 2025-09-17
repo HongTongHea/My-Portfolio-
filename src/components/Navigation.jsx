@@ -1,6 +1,5 @@
 import React from "react";
-import { Monitor, Sun, Moon, Menu, X } from "lucide-react";
-
+import { Sun, Moon, Menu, X } from "lucide-react";
 
 export function Navigation({
   darkMode,
@@ -95,7 +94,7 @@ export function Navigation({
             </a>
           </div>
 
-          {/* Dark Mode and Mobile Menu Buttons */}
+          {/* Dark Mode + Mobile Menu Buttons */}
           <div className="absolute right-0 flex items-center gap-4">
             <button
               onClick={() => setDarkMode(!darkMode)}
@@ -191,6 +190,22 @@ export function Navigation({
               PROJECTS
             </a>
             <a
+              role="button"
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById("contact");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
+                setIsMenuOpen(false);
+              }}
+              className={`px-4 py-2 rounded-lg font-semibold text-center transition-colors ${
+                darkMode
+                  ? "bg-white text-gray-900 hover:bg-gray-200"
+                  : "bg-gray-900 text-white hover:bg-gray-700"
+              }`}
+            >
+              HIRE ME!
+            </a>
           </div>
         </div>
       )}
