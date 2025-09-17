@@ -22,7 +22,7 @@ export function Navigation({
             <img
               src={darkMode ? logo2 : logo1}
               alt="Logo"
-              className="h-20 w-auto"
+              className="h-15 w-auto"
             />
           </div>
 
