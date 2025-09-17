@@ -300,7 +300,7 @@ export function Projects({ darkMode }) {
           {posterProjects.length > 0 ? (
             <div
               className={`p-6 rounded-xl ${
-                darkMode ? "bg-gray-800/50" : "bg-gray-50"
+                darkMode ? "" : "bg-gray-50"
               }`}
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
