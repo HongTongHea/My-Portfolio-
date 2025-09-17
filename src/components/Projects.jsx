@@ -315,7 +315,7 @@ export function Projects({ darkMode }) {
                     <img
                       src={project.image}
                       alt={`${project.title} - ${project.category}`}
-                      className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-100 object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div
                       className={`absolute inset-0 bg-gradient-to-t ${
