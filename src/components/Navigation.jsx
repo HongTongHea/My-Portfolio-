@@ -86,8 +86,8 @@ export function Navigation({
               }}
               className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
                 darkMode
-                  ? "bg-white text-gray-900 hover:bg-gray-200"
-                  : "bg-gray-900 text-white hover:bg-gray-700"
+                  ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                  : "bg-indigo-600 text-white hover:bg-indigo-700"
               }`}
             >
               HIRE ME!
@@ -200,8 +200,8 @@ export function Navigation({
               }}
               className={`px-4 py-2 rounded-lg font-semibold text-center transition-colors ${
                 darkMode
-                  ? "bg-white text-gray-900 hover:bg-gray-200"
-                  : "bg-gray-900 text-white hover:bg-gray-700"
+                  ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                  : "bg-indigo-600 text-white hover:bg-indigo-700"
               }`}
             >
               HIRE ME!
