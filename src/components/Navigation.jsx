@@ -1,6 +1,7 @@
 import React from "react";
 import { Monitor, Sun, Moon, Menu, X } from "lucide-react";
-
+import  logo1 from "../assets/image/Portfolio1.png";
+import  logo2 from "../assets/image/Portfolio.png";
 export function Navigation({
   darkMode,
   setDarkMode,
@@ -17,7 +18,7 @@ export function Navigation({
         <div className="flex justify-center items-center h-16 relative">
          <div className="absolute left-0 flex items-center gap-2">
               <img
-                src={darkMode ? "assets/images/logo-white.png" : "assets/images/logo-color.png"}
+                src={darkMode ? logo1 : logo2}
                 alt="Logo"
                 className="h-10 w-auto"
               />
