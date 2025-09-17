@@ -213,7 +213,7 @@ export function Projects({ darkMode }) {
         {/* Web Dev Projects Section */}
         <div className="mb-16">
           <h2
-            className={`text-3xl sm:text-3xl font-bold text-center md:text-left mb-4 ${
+            className={`text-3xl sm:text-3xl font-bold text-center md:text-left mb-10 ${
               darkMode ? "text-white" : "text-gray-900"
             }`}
           >
