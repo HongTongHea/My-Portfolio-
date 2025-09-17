@@ -41,7 +41,7 @@ export function Navigation({
                   : "text-gray-600 hover:text-gray-900"
               } transition-colors`}
             >
-              Home
+              HOME
             </a>
             <a
               role="button"
@@ -57,7 +57,7 @@ export function Navigation({
                   : "text-gray-600 hover:text-gray-900"
               } transition-colors`}
             >
-              About Me
+             ABOUT ME
             </a>
             <a
               role="button"
@@ -73,7 +73,7 @@ export function Navigation({
                   : "text-gray-600 hover:text-gray-900"
               } transition-colors`}
             >
-              Projects
+              PROJECTS
             </a>
             <a
               role="button"
@@ -89,7 +89,7 @@ export function Navigation({
                   : "text-gray-600 hover:text-gray-900"
               } transition-colors`}
             >
-              Contact Me
+              HIRE ME!
             </a>
           </div>
 
@@ -151,7 +151,7 @@ export function Navigation({
                     : "text-gray-600 hover:text-gray-900"
                 } transition-colors`}
               >
-                Home
+                HOME
               </a>
               <a
                 role="button"
@@ -168,7 +168,7 @@ export function Navigation({
                     : "text-gray-600 hover:text-gray-900"
                 } transition-colors`}
               >
-                About Me
+                ABOUT ME
               </a>
               <a
                 role="button"
@@ -185,7 +185,7 @@ export function Navigation({
                     : "text-gray-600 hover:text-gray-900"
                 } transition-colors`}
               >
-                Projects
+                PROJECTS
               </a>
               <a
                 role="button"
@@ -202,7 +202,7 @@ export function Navigation({
                     : "text-gray-600 hover:text-gray-900"
                 } transition-colors`}
               >
-                Contact
+                HIRE ME!
               </a>
             </div>
           </div>
