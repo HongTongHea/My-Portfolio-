@@ -17,13 +17,10 @@ export function Navigation({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-center items-center h-16 relative">
-          {/* Logo */}
-          <div className="absolute left-0 flex items-center gap-2">
-            <img
-              src={darkMode ? logo2 : logo1}
-              alt="Logo"
-              className="h-10 w-auto"
-            />
+         <div className="absolute left-0 flex items-center gap-2"> 
+           <span className={font-bold text-xl ${ darkMode ? "text-white" : "text-gray-900" }} >
+           Portfolio 
+           </span> 
           </div>
 
           {/* Desktop Navigation */}
