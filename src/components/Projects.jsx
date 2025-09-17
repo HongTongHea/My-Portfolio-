@@ -299,7 +299,7 @@ export function Projects({ darkMode }) {
 
           {posterProjects.length > 0 ? (
             <div
-              className={`p-6 rounded-xl ${
+              className={`rounded-xl ${
                 darkMode ? "" : "bg-gray-50"
               }`}
             >
