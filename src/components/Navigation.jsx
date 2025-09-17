@@ -18,8 +18,13 @@ export function Navigation({
         <div className="flex justify-center items-center h-16 relative">
           {/* Logo */}
           <div className="absolute left-0 flex items-center gap-2">
-          <span className={font-bold text-xl ${ darkMode ? "text-white" : "text-gray-900" }} > 
-            PORTFOLIO </span>
+            <span
+              className={`font-bold text-xl ${
+                darkMode ? "text-white" : "text-gray-900"
+              }`}
+            >
+              PORTFOLIO
+            </span>
           </div>
 
           {/* Desktop Navigation */}
