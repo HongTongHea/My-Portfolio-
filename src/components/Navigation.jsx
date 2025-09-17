@@ -84,7 +84,7 @@ export function Navigation({
                 const el = document.getElementById("contact");
                 if (el) el.scrollIntoView({ behavior: "smooth" });
               }}
-              className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
+              className={`px-4 py-2 rounded-full font-semibold transition-colors ${
                 darkMode
                   ? "bg-indigo-600 text-white hover:bg-indigo-700"
                   : "bg-indigo-600 text-white hover:bg-indigo-700"
@@ -198,7 +198,7 @@ export function Navigation({
                 if (el) el.scrollIntoView({ behavior: "smooth" });
                 setIsMenuOpen(false);
               }}
-              className={`px-4 py-2 rounded-lg font-semibold text-center transition-colors ${
+              className={`px-4 py-2 rounded-full font-semibold text-center transition-colors ${
                 darkMode
                   ? "bg-indigo-600 text-white hover:bg-indigo-700"
                   : "bg-indigo-600 text-white hover:bg-indigo-700"
