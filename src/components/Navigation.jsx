@@ -131,7 +131,7 @@ export function Navigation({
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div
-            className={`md:hidden py-4 px-4 backdrop-blur-md ${
+            className={`md:hidden py-4 backdrop-blur-md ${
               darkMode ? "bg-gray-900/90" : "bg-white/90"
             }`}
           >
