@@ -197,7 +197,7 @@ export function Projects({ darkMode }) {
               <MdDesignServices className="text-white" size={24} />
             </div>
             <h3
-              className={`text-xl font-bold mb-4 ${
+              className={`text-3xl sm:text-3xl font-bold mb-4${
                 darkMode ? "text-white" : "text-gray-900"
               }`}
             >
