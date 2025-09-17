@@ -177,7 +177,7 @@ export function Projects({ darkMode }) {
                 darkMode ? "text-white" : "text-gray-900"
               }`}
             >
-              Graphic Design
+              Graphic Designer
             </h3>
             <p className={darkMode ? "text-gray-300" : "text-gray-600"}>
               Designing memorable brand identities, user interfaces, and visual
@@ -197,7 +197,7 @@ export function Projects({ darkMode }) {
               <MdDesignServices className="text-white" size={24} />
             </div>
             <h3
-              className={`text-3xl sm:text-3xl font-bold mb-4${
+              className={`text-3xl sm:text-3xl font-bold mb-4 ${
                 darkMode ? "text-white" : "text-gray-900"
               }`}
             >
