@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 export function TypingAnimation() {
   const phrases = [
     "Junior Graphic Designer",
-    "Junior Web Developer",
+    "Junior Web Development",
     "Junior UI/UX Designer",
   ];
   const [displayText, setDisplayText] = useState("");
