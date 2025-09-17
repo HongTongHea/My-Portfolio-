@@ -387,7 +387,7 @@ export function Projects({ darkMode }) {
               <img
                 src={selectedImage.image}
                 alt={`${selectedImage.title} - ${selectedImage.category}`}
-                className="w-full object-contain max-h-[80vh]"
+                className="w-full object-contain object-cover max-h-[80vh]"
               />
             </div>
 
