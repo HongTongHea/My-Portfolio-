@@ -44,8 +44,8 @@ export function Hero({ darkMode }) {
             darkMode ? "text-white" : "text-gray-900"
           } text-1xl font-semibold`}
         >
-          Hi, It's{" "}
-          <span className="font-semibold text-indigo-600 ">Hong Tong Hea</span>
+          Hello, It's Me{" "}
+          <span className="font-semibold text-indigo-600 ">Tong Hea</span>
         </h5>
 
         {/* Text Content - Below image */}
