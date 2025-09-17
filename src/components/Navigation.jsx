@@ -1,7 +1,7 @@
 import React from "react";
 import { Monitor, Sun, Moon, Menu, X } from "lucide-react";
-import  logo1 from "../assets/image/Portfolio1.png";
-import  logo2 from "../assets/image/Portfolio.png";
+import  logo1 from "../assets/image/Portfolio.png";
+import  logo2 from "../assets/image/Portfolio1.png";
 export function Navigation({
   darkMode,
   setDarkMode,
