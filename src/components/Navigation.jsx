@@ -1,7 +1,7 @@
 import React from "react";
 import { Monitor, Sun, Moon, Menu, X } from "lucide-react";
-import logo1 from "../assets/image/Portfolio1.png";   // darkMode false
-import logo2 from "../assets/image/Portfolio.png";  // darkMode true
+// import logo1 from "../assets/image/Portfolio1.png";   // darkMode false
+// import logo2 from "../assets/image/Portfolio.png";  // darkMode true
 
 export function Navigation({
   darkMode,
@@ -19,7 +19,7 @@ export function Navigation({
         <div className="flex justify-center items-center h-16 relative">
          <div className="absolute left-0 flex items-center gap-2"> 
            <span className={font-bold text-xl ${ darkMode ? "text-white" : "text-gray-900" }} >
-           Portfolio 
+            PORTFOLIO
            </span> 
           </div>
 
