@@ -12,7 +12,7 @@ const app = express();
 const uploadsDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
 
-app.use(cors({ origin: "*" })); // adjust to your React port
+app.use(cors({ origin: "https://my-portfolio-kyc6.onrender.com" })); // adjust to your React port
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -26,4 +26,4 @@ app.use("/api/posters", posterRoutes);
 app.get("/", (req, res) => res.json({ message: "Poster API running ✅" }));
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Server running on https://my-portfolio-kyc6.onrender.com:${PORT}`));
