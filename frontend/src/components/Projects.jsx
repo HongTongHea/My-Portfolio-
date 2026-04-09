@@ -6,7 +6,7 @@ import Image1 from "../assets/image/image.png";
 import Image2 from "../assets/image/image 2.png";
 import Image3 from "../assets/image/imge3.png";
 
-const API_BASE = `${import.meta.env.VITE_API_BASE}/api/posters`;
+const API_BASE = "https://my-portfolio-kyc6.onrender.com";
 
 const webProjects = [
   {
@@ -134,8 +134,8 @@ export function Projects({ darkMode }) {
 
   // ── Helper: build image URL ──
   const getPosterImageUrl = (project) => {
-  if (project.image_url) return `${import.meta.env.VITE_API_BASE}${project.image_url}`;
-  return project.image || "";
+    if (project.image_url) return `https://my-portfolio-kyc6.onrender.com${project.image_url}`;
+    return project.image || "";
   };
 
   return (
