@@ -6,7 +6,7 @@ import Image1 from "../assets/image/image.png";
 import Image2 from "../assets/image/image 2.png";
 import Image3 from "../assets/image/imge3.png";
 
-const API_BASE = "https://my-portfolio-kyc6.onrender.com";
+const API_BASE = "https://my-portfolio-kyc6.onrender.com/api/posters";
 
 const webProjects = [
   {

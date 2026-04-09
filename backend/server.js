@@ -12,7 +12,7 @@ const app = express();
 const uploadsDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
 
-app.use(cors({ origin: "http://localhost:5173" })); // adjust to your React port
+app.use(cors({ origin: "*" })); // adjust to your React port
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
