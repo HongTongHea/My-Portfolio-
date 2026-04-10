@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { TypingAnimation } from "./TypingAnimation";
-import { FaGithub, FaFacebook, FaEnvelope, FaTelegram } from "react-icons/fa";
+import { FaGithub, FaFacebook, FaEnvelope, FaTelegram, FaBehance } from "react-icons/fa";
 import myImage from "../assets/image/my-image.jpg";
 // Make sure to import your CV file
 import cvFile from "../assets/cv/CV Mr. Hong Tong hea.pdf"; // Update this path to your actual CV file
@@ -21,9 +21,8 @@ export function Hero({ darkMode }) {
   return (
     <div className="relative overflow-hidden" id="hero">
       <div
-        className={`absolute inset-0 ${
-          darkMode ? "bg-gray-900/95" : "bg-white/95"
-        } z-0`}
+        className={`absolute inset-0 ${darkMode ? "bg-gray-900/95" : "bg-white/95"
+          } z-0`}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 relative z-10">
         {/* Image Section - Now on top */}
@@ -40,9 +39,8 @@ export function Hero({ darkMode }) {
           </div>
         </div>
         <h5
-          className={`text-center mb-5 ${
-            darkMode ? "text-white" : "text-gray-900"
-          } text-1xl font-semibold`}
+          className={`text-center mb-5 ${darkMode ? "text-white" : "text-gray-900"
+            } text-1xl font-semibold`}
         >
           Hello, It's Me{" "}
           <span className="font-semibold text-indigo-600 ">Tong Hea</span>
@@ -51,16 +49,14 @@ export function Hero({ darkMode }) {
         {/* Text Content - Below image */}
         <div className="text-center">
           <h1
-            className={`text-4xl sm:text-5xl font-bold ${
-              darkMode ? "text-white" : "text-gray-900"
-            } mb-6`}
+            className={`text-4xl sm:text-5xl font-bold ${darkMode ? "text-white" : "text-gray-900"
+              } mb-6`}
           >
             I'm a <TypingAnimation />
           </h1>
           <p
-            className={`text-lg sm:text-xl ${
-              darkMode ? "text-gray-300" : "text-gray-600"
-            } max-w-2xl mx-auto mb-8`}
+            className={`text-lg sm:text-xl ${darkMode ? "text-gray-300" : "text-gray-600"
+              } max-w-2xl mx-auto mb-8`}
           >
             Junior web developer & Graphic, UX/UI designer creating beautiful,
             functional digital solutions that make user experiences more
@@ -80,66 +76,75 @@ export function Hero({ darkMode }) {
             </button>
             <button
               onClick={handleDownloadCV}
-              className={`border-2 ${
-                darkMode
-                  ? "border-white text-white hover:bg-white hover:text-gray-900"
-                  : "border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white"
-              } px-6 py-3 rounded-full font-medium transition-all`}
+              className={`border-2 ${darkMode
+                ? "border-white text-white hover:bg-white hover:text-gray-900"
+                : "border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white"
+                } px-6 py-3 rounded-full font-medium transition-all`}
             >
               My Resume
             </button>
           </div>
           <div className="flex justify-center mt-8 mb-4">
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <a
-                href="https://github.com/HongTongHea"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex items-center gap-2 ${
-                  darkMode
-                    ? "text-gray-300 hover:text-white"
-                    : "text-gray-600 hover:text-indigo-600"
-                } transition-colors`}
-              >
-                <FaGithub size={24} />
-                <span>GitHub</span>
-              </a>
-              <a
+
+              {/* <a
                 href="mailto:hongtonghea@gmail.com"
-                className={`flex items-center gap-2 ${
-                  darkMode
-                    ? "text-gray-300 hover:text-white"
-                    : "text-gray-600 hover:text-indigo-600"
-                } transition-colors`}
+                className={`flex items-center gap-2 ${darkMode
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-600 hover:text-indigo-600"
+                  } transition-colors`}
               >
                 <FaEnvelope size={24} />
                 <span>Email</span>
-              </a>
+              </a> */}
               <a
                 href="https://www.facebook.com/share/1Fghx7gEcY/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex items-center gap-2 ${
-                  darkMode
-                    ? "text-gray-300 hover:text-white"
-                    : "text-gray-600 hover:text-indigo-600"
-                } transition-colors`}
+                className={`flex items-center gap-2 ${darkMode
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-600 hover:text-indigo-600"
+                  } transition-colors`}
               >
                 <FaFacebook size={24} />
                 <span>Facebook</span>
               </a>
               <a
+                href="https://github.com/HongTongHea"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-2 ${darkMode
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-600 hover:text-indigo-600"
+                  } transition-colors`}
+              >
+                <FaGithub size={24} />
+                <span>GitHub</span>
+              </a>
+              <a
                 href="https://t.me/Tonghear"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex items-center gap-2 ${
-                  darkMode
-                    ? "text-gray-300 hover:text-white"
-                    : "text-gray-600 hover:text-indigo-600"
-                } transition-colors`}
+                className={`flex items-center gap-2 ${darkMode
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-600 hover:text-indigo-600"
+                  } transition-colors`}
               >
                 <FaTelegram size={24} />
                 <span>Telegarm</span>
+              </a>
+
+              <a
+                href="https://www.behance.net/tonghearhong1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-2 ${darkMode
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-600 hover:text-indigo-600"
+                  } transition-colors`}
+              >
+                <FaBehance size={24} />
+                <span>Behance</span>
               </a>
             </div>
           </div>
