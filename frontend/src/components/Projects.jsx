@@ -6,10 +6,23 @@ import Image1 from "../assets/image/image.png";
 import Image2 from "../assets/image/image 2.png";
 import Image3 from "../assets/image/imge3.png";
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Cloudinary — image file storage
+// ─────────────────────────────────────────────────────────────────────────────
 const CLOUDINARY_CLOUD_NAME = "dduugsjbq";
 const CLOUDINARY_UPLOAD_PRESET = "my-poster-portfolio";
 const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
-const STORAGE_KEY = "portfolio_posters";
+
+// ─────────────────────────────────────────────────────────────────────────────
+// JSONBin — shared metadata storage (works on ALL devices / browsers)
+// 1. Sign up free at jsonbin.io
+// 2. Create a Bin with content: []
+// 3. Paste your Bin ID and API Key below
+// ─────────────────────────────────────────────────────────────────────────────
+const JSONBIN_BIN_ID = "69d873f4aaba882197e1d21b";   // e.g. "6643f2e4acd3cb34a85b5e1f"
+const JSONBIN_API_KEY = "$2a$10$TbTYC3O1xvdOXjR9aT8TLO08wrnEKSvqFnhc1.G8Orm689eQzvSoS";  // e.g. "$2a$10$abc123..."
+const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
+// ─────────────────────────────────────────────────────────────────────────────
 
 const webProjects = [
   {
@@ -35,26 +48,32 @@ const webProjects = [
   },
 ];
 
-const loadPosters = () => {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch {
-    return [];
-  }
+// ── JSONBin helpers ───────────────────────────────────────────────────────────
+const jsonbinHeaders = {
+  "Content-Type": "application/json",
+  "X-Master-Key": JSONBIN_API_KEY,
+  "X-Bin-Versioning": "false",   // always overwrite, don't create versions
 };
 
-const savePosters = (posters) => {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(posters));
-  } catch (e) {
-    console.warn("localStorage error:", e);
-  }
-};
+async function fetchPosters() {
+  const res = await fetch(JSONBIN_URL + "/latest", { headers: jsonbinHeaders });
+  const data = await res.json();
+  return Array.isArray(data.record) ? data.record : [];
+}
+
+async function persistPosters(posters) {
+  await fetch(JSONBIN_URL, {
+    method: "PUT",
+    headers: jsonbinHeaders,
+    body: JSON.stringify(posters),
+  });
+}
+// ─────────────────────────────────────────────────────────────────────────────
 
 export function Projects({ darkMode }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploadedPosters, setUploadedPosters] = useState([]);
+  const [loadingPosters, setLoadingPosters] = useState(true);
 
   // Upload modal
   const [showUploadModal, setShowUploadModal] = useState(false);
@@ -71,8 +90,12 @@ export function Projects({ darkMode }) {
 
   const formFileRef = useRef(null);
 
+  // ── Load posters from JSONBin on mount (works on every device) ──
   useEffect(() => {
-    setUploadedPosters(loadPosters());
+    fetchPosters()
+      .then(setUploadedPosters)
+      .catch((err) => console.error("Failed to load posters:", err))
+      .finally(() => setLoadingPosters(false));
   }, []);
 
   const openModal = (project) => setSelectedImage(project);
@@ -104,6 +127,7 @@ export function Projects({ darkMode }) {
     if (!formName) setFormName(file.name.replace(/\.[^/.]+$/, ""));
   };
 
+  // ── 1) Upload image to Cloudinary → 2) Save metadata to JSONBin ──
   const handleFormSubmit = async () => {
     if (!formImageFile) { setFormError("Please select an image."); return; }
     if (!formName.trim()) { setFormError("Please enter a poster name."); return; }
@@ -113,6 +137,7 @@ export function Projects({ darkMode }) {
     setUploadProgress(0);
 
     try {
+      // Step 1: Upload image to Cloudinary
       const fd = new FormData();
       fd.append("file", formImageFile);
       fd.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
@@ -132,6 +157,7 @@ export function Projects({ darkMode }) {
         xhr.send(fd);
       });
 
+      // Step 2: Save metadata to JSONBin (shared across all devices)
       const newPoster = {
         id: Date.now().toString(),
         title: formName.trim(),
@@ -141,9 +167,10 @@ export function Projects({ darkMode }) {
       };
 
       const updated = [newPoster, ...uploadedPosters];
-      savePosters(updated);
+      await persistPosters(updated);
       setUploadedPosters(updated);
       setShowUploadModal(false);
+
     } catch (err) {
       console.error(err);
       setFormError(err.message || "Upload failed. Please try again.");
@@ -153,16 +180,21 @@ export function Projects({ darkMode }) {
     }
   };
 
-  // ── Open confirm dialog instead of window.confirm ──
+  // ── Open confirm dialog ──
   const removeUploadedPoster = (e, id, title) => {
     e.stopPropagation();
     setConfirmDialog({ open: true, id, title });
   };
 
-  const confirmRemove = () => {
+  // ── Delete from JSONBin ──
+  const confirmRemove = async () => {
     const updated = uploadedPosters.filter((p) => p.id !== confirmDialog.id);
-    savePosters(updated);
-    setUploadedPosters(updated);
+    try {
+      await persistPosters(updated);
+      setUploadedPosters(updated);
+    } catch (err) {
+      console.error("Delete failed:", err);
+    }
     setConfirmDialog({ open: false, id: null, title: "" });
   };
 
@@ -229,7 +261,12 @@ export function Projects({ darkMode }) {
             </button>
           </div>
 
-          {uploadedPosters.length > 0 ? (
+          {/* Loading state */}
+          {loadingPosters ? (
+            <div className="flex items-center justify-center py-20">
+              <div className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+            </div>
+          ) : uploadedPosters.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {uploadedPosters.map((project) => (
                 <div key={project.id}
@@ -378,22 +415,16 @@ export function Projects({ darkMode }) {
 
       {/* ── Confirm Delete Dialog ── */}
       {confirmDialog.open && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
-          onClick={cancelRemove}
-        >
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={cancelRemove}>
           <div
-            className={`w-full max-w-sm rounded-2xl shadow-2xl overflow-hidden transition-all ${darkMode ? "bg-gray-800" : "bg-white"}`}
+            className={`w-full max-w-sm rounded-2xl shadow-2xl overflow-hidden ${darkMode ? "bg-gray-800" : "bg-white"}`}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Icon + Text */}
             <div className="flex flex-col items-center px-6 pt-8 pb-5 text-center">
               <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 ${darkMode ? "bg-red-500/20" : "bg-red-50"}`}>
                 <Trash2 className="text-red-500" size={28} />
               </div>
-              <h3 className={`text-lg font-bold mb-2 ${darkMode ? "text-white" : "text-gray-900"}`}>
-                Remove Poster
-              </h3>
+              <h3 className={`text-lg font-bold mb-2 ${darkMode ? "text-white" : "text-gray-900"}`}>Remove Poster</h3>
               <p className={`text-sm leading-relaxed ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
                 Are you sure you want to remove{" "}
                 <span className={`font-semibold ${darkMode ? "text-white" : "text-gray-800"}`}>
@@ -402,23 +433,15 @@ export function Projects({ darkMode }) {
                 ?<br />This action cannot be undone.
               </p>
             </div>
-
-            {/* Divider */}
             <div className={`h-px mx-6 ${darkMode ? "bg-gray-700" : "bg-gray-100"}`} />
-
-            {/* Buttons */}
             <div className="flex gap-3 px-6 py-4">
-              <button
-                onClick={cancelRemove}
+              <button onClick={cancelRemove}
                 className={`flex-1 py-2.5 rounded-xl text-sm font-semibold border transition-colors duration-200
-                  ${darkMode ? "border-gray-600 text-gray-300 hover:bg-gray-700" : "border-gray-200 text-gray-600 hover:bg-gray-50"}`}
-              >
+                  ${darkMode ? "border-gray-600 text-gray-300 hover:bg-gray-700" : "border-gray-200 text-gray-600 hover:bg-gray-50"}`}>
                 Cancel
               </button>
-              <button
-                onClick={confirmRemove}
-                className="flex-1 py-2.5 rounded-xl text-sm font-semibold bg-red-500 hover:bg-red-600 text-white transition-colors duration-200 flex items-center justify-center gap-2"
-              >
+              <button onClick={confirmRemove}
+                className="flex-1 py-2.5 rounded-xl text-sm font-semibold bg-red-500 hover:bg-red-600 text-white transition-colors duration-200 flex items-center justify-center gap-2">
                 <Trash2 size={14} />
                 Remove
               </button>
