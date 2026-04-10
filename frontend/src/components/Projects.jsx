@@ -1,51 +1,40 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Code2, Palette, X, Upload, ImagePlus } from "lucide-react";
+import { Code2, Palette, X, Upload, ImagePlus, Trash2 } from "lucide-react";
 import { MdDesignServices } from "react-icons/md";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import Image1 from "../assets/image/image.png";
 import Image2 from "../assets/image/image 2.png";
 import Image3 from "../assets/image/imge3.png";
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 👇 Replace these two values with your own from cloudinary.com
-// ─────────────────────────────────────────────────────────────────────────────
-const CLOUDINARY_CLOUD_NAME    = "dduugsjbq";     // e.g. "dxyz123abc"
-const CLOUDINARY_UPLOAD_PRESET = "my-poster-portfolio";  // e.g. "portfolio_unsigned"
-// ─────────────────────────────────────────────────────────────────────────────
-
-const CLOUDINARY_UPLOAD_URL =
-  `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
-
-const STORAGE_KEY = "portfolio_posters"; // localStorage key for metadata
+const CLOUDINARY_CLOUD_NAME = "dduugsjbq";
+const CLOUDINARY_UPLOAD_PRESET = "my-poster-portfolio";
+const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
+const STORAGE_KEY = "portfolio_posters";
 
 const webProjects = [
   {
     id: 1,
     title: "TOUR & TRAVEl",
-    description:
-      "A travel agency website showcasing various tours and travel packages.",
+    description: "A travel agency website showcasing various tours and travel packages.",
     image: Image1,
     viewUrl: "https://tour-travel-kohl.vercel.app/",
   },
   {
     id: 2,
     title: "CAR DEALER WEBSITE",
-    description:
-      "A car dealer website featuring a wide range of vehicles for sale.",
+    description: "A car dealer website featuring a wide range of vehicles for sale.",
     image: Image2,
     viewUrl: "https://car-dealer-website-ten.vercel.app/",
   },
   {
     id: 3,
     title: "TUTORIAL WEBSITE",
-    description:
-      "A comprehensive tutorial website offering courses on various subjects.",
+    description: "A comprehensive tutorial website offering courses on various subjects.",
     image: Image3,
     viewUrl: "https://website-tutor-rho.vercel.app/",
   },
 ];
 
-// ── localStorage helpers ──────────────────────────────────────────────────────
 const loadPosters = () => {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -62,29 +51,31 @@ const savePosters = (posters) => {
     console.warn("localStorage error:", e);
   }
 };
-// ─────────────────────────────────────────────────────────────────────────────
 
 export function Projects({ darkMode }) {
-  const [selectedImage, setSelectedImage]       = useState(null);
-  const [uploadedPosters, setUploadedPosters]   = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [uploadedPosters, setUploadedPosters] = useState([]);
 
-  const [showUploadModal, setShowUploadModal]   = useState(false);
-  const [formName, setFormName]                 = useState("");
-  const [formCategory, setFormCategory]         = useState("");
-  const [formImageFile, setFormImageFile]       = useState(null);
+  // Upload modal
+  const [showUploadModal, setShowUploadModal] = useState(false);
+  const [formName, setFormName] = useState("");
+  const [formCategory, setFormCategory] = useState("");
+  const [formImageFile, setFormImageFile] = useState(null);
   const [formImagePreview, setFormImagePreview] = useState(null);
-  const [formError, setFormError]               = useState("");
-  const [uploading, setUploading]               = useState(false);
-  const [uploadProgress, setUploadProgress]     = useState(0);
+  const [formError, setFormError] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+
+  // Confirm delete dialog
+  const [confirmDialog, setConfirmDialog] = useState({ open: false, id: null, title: "" });
 
   const formFileRef = useRef(null);
 
-  // ── Load poster metadata from localStorage on mount ──
   useEffect(() => {
     setUploadedPosters(loadPosters());
   }, []);
 
-  const openModal  = (project) => setSelectedImage(project);
+  const openModal = (project) => setSelectedImage(project);
   const closeModal = () => setSelectedImage(null);
 
   const openUploadModal = () => {
@@ -110,12 +101,9 @@ export function Projects({ darkMode }) {
     const reader = new FileReader();
     reader.onload = (ev) => setFormImagePreview(ev.target.result);
     reader.readAsDataURL(file);
-    if (!formName) {
-      setFormName(file.name.replace(/\.[^/.]+$/, ""));
-    }
+    if (!formName) setFormName(file.name.replace(/\.[^/.]+$/, ""));
   };
 
-  // ── Upload image to Cloudinary → save URL + metadata to localStorage ──
   const handleFormSubmit = async () => {
     if (!formImageFile) { setFormError("Please select an image."); return; }
     if (!formName.trim()) { setFormError("Please enter a poster name."); return; }
@@ -126,39 +114,29 @@ export function Projects({ darkMode }) {
 
     try {
       const fd = new FormData();
-      fd.append("file",          formImageFile);
+      fd.append("file", formImageFile);
       fd.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
-      fd.append("folder",        "portfolio_posters");
+      fd.append("folder", "portfolio_posters");
 
-      // XMLHttpRequest lets us track upload progress
       const imageUrl = await new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.open("POST", CLOUDINARY_UPLOAD_URL);
-
         xhr.upload.onprogress = (e) => {
-          if (e.lengthComputable) {
-            setUploadProgress(Math.round((e.loaded / e.total) * 100));
-          }
+          if (e.lengthComputable) setUploadProgress(Math.round((e.loaded / e.total) * 100));
         };
-
         xhr.onload = () => {
-          if (xhr.status === 200) {
-            resolve(JSON.parse(xhr.responseText).secure_url);
-          } else {
-            reject(new Error("Cloudinary upload failed. Check your cloud name and upload preset."));
-          }
+          if (xhr.status === 200) resolve(JSON.parse(xhr.responseText).secure_url);
+          else reject(new Error("Cloudinary upload failed. Check your cloud name and upload preset."));
         };
-
         xhr.onerror = () => reject(new Error("Network error during upload."));
         xhr.send(fd);
       });
 
-      // Store only the URL + metadata (very small) in localStorage
       const newPoster = {
-        id:         Date.now().toString(),
-        title:      formName.trim(),
-        category:   formCategory.trim() || "Uploaded Artwork",
-        image_url:  imageUrl,
+        id: Date.now().toString(),
+        title: formName.trim(),
+        category: formCategory.trim() || "Uploaded Artwork",
+        image_url: imageUrl,
         created_at: new Date().toISOString(),
       };
 
@@ -166,7 +144,6 @@ export function Projects({ darkMode }) {
       savePosters(updated);
       setUploadedPosters(updated);
       setShowUploadModal(false);
-
     } catch (err) {
       console.error(err);
       setFormError(err.message || "Upload failed. Please try again.");
@@ -176,19 +153,23 @@ export function Projects({ darkMode }) {
     }
   };
 
-  // ── Remove poster metadata from localStorage ──
-  const removeUploadedPoster = (e, id) => {
+  // ── Open confirm dialog instead of window.confirm ──
+  const removeUploadedPoster = (e, id, title) => {
     e.stopPropagation();
-    const updated = uploadedPosters.filter((p) => p.id !== id);
-    savePosters(updated);
-    setUploadedPosters(updated);
+    setConfirmDialog({ open: true, id, title });
   };
 
+  const confirmRemove = () => {
+    const updated = uploadedPosters.filter((p) => p.id !== confirmDialog.id);
+    savePosters(updated);
+    setUploadedPosters(updated);
+    setConfirmDialog({ open: false, id: null, title: "" });
+  };
+
+  const cancelRemove = () => setConfirmDialog({ open: false, id: null, title: "" });
+
   return (
-    <section
-      id="projects"
-      className={`pt-8 ${darkMode ? "bg-gray-900/95" : "bg-white"}`}
-    >
+    <section id="projects" className={`pt-8 ${darkMode ? "bg-gray-900/95" : "bg-white"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Featured Projects ── */}
@@ -262,8 +243,11 @@ export function Projects({ darkMode }) {
                       <p className="text-sm text-gray-200 line-clamp-2">{project.category}</p>
                     </div>
                   </div>
-                  <button onClick={(e) => removeUploadedPoster(e, project.id)}
-                    className="absolute top-2 right-2 z-10 p-1.5 rounded-full bg-black/60 hover:bg-red-600 transition-colors duration-200 opacity-0 group-hover:opacity-100" title="Remove poster">
+                  <button
+                    onClick={(e) => removeUploadedPoster(e, project.id, project.title)}
+                    className="absolute top-2 right-2 z-10 p-1.5 rounded-full bg-black/60 hover:bg-red-600 transition-colors duration-200 opacity-0 group-hover:opacity-100"
+                    title="Remove poster"
+                  >
                     <X className="text-white" size={14} />
                   </button>
                 </div>
@@ -280,13 +264,11 @@ export function Projects({ darkMode }) {
         </div>
       </div>
 
-      {/* ── Upload Form Modal ── */}
+      {/* ── Upload Modal ── */}
       {showUploadModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4" onClick={closeUploadModal}>
           <div className={`relative w-full max-w-md rounded-2xl shadow-2xl overflow-hidden ${darkMode ? "bg-gray-800" : "bg-white"}`}
             onClick={(e) => e.stopPropagation()}>
-
-            {/* Header */}
             <div className={`flex items-center justify-between px-6 py-4 border-b ${darkMode ? "border-gray-700" : "border-gray-200"}`}>
               <h3 className={`text-lg font-bold ${darkMode ? "text-white" : "text-gray-900"}`}>Upload Poster</h3>
               <button onClick={closeUploadModal} disabled={uploading} className="p-1.5 rounded-full hover:bg-gray-200/20 transition-colors disabled:opacity-50">
@@ -294,10 +276,7 @@ export function Projects({ darkMode }) {
               </button>
             </div>
 
-            {/* Body */}
             <div className="px-6 py-5 flex flex-col gap-5">
-
-              {/* Image picker */}
               <div>
                 <label className={`block text-sm font-semibold mb-2 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
                   Poster Image <span className="text-red-500">*</span>
@@ -309,7 +288,6 @@ export function Projects({ darkMode }) {
                   {formImagePreview ? (
                     <>
                       <img src={formImagePreview} alt="Preview" className="w-full h-full object-cover" />
-                      {/* Progress overlay */}
                       {uploading && (
                         <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center gap-3 px-8">
                           <div className="w-full bg-gray-600 rounded-full h-2.5">
@@ -335,7 +313,6 @@ export function Projects({ darkMode }) {
                 <input ref={formFileRef} type="file" accept="image/*" className="hidden" onChange={handleFormImageChange} disabled={uploading} />
               </div>
 
-              {/* Poster Name */}
               <div>
                 <label className={`block text-sm font-semibold mb-1.5 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
                   Poster Name <span className="text-red-500">*</span>
@@ -347,7 +324,6 @@ export function Projects({ darkMode }) {
                     ${darkMode ? "bg-gray-700 border-gray-600 text-white placeholder-gray-500 focus:border-indigo-500" : "bg-white border-gray-300 text-gray-900 placeholder-gray-400 focus:border-indigo-500"}`} />
               </div>
 
-              {/* Category */}
               <div>
                 <label className={`block text-sm font-semibold mb-1.5 ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
                   Category / Description
@@ -362,7 +338,6 @@ export function Projects({ darkMode }) {
               {formError && <p className="text-red-500 text-sm font-medium -mt-2">{formError}</p>}
             </div>
 
-            {/* Footer */}
             <div className="flex gap-3 px-6 pb-6">
               <button onClick={closeUploadModal} disabled={uploading}
                 className={`flex-1 py-2.5 rounded-xl text-sm font-semibold border transition-colors duration-200 disabled:opacity-50
@@ -396,6 +371,57 @@ export function Projects({ darkMode }) {
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-5 py-4">
               <h3 className="text-white text-xl font-bold leading-tight">{selectedImage.title}</h3>
               <p className="text-gray-300 text-sm mt-1 line-clamp-2">{selectedImage.category}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Confirm Delete Dialog ── */}
+      {confirmDialog.open && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+          onClick={cancelRemove}
+        >
+          <div
+            className={`w-full max-w-sm rounded-2xl shadow-2xl overflow-hidden transition-all ${darkMode ? "bg-gray-800" : "bg-white"}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Icon + Text */}
+            <div className="flex flex-col items-center px-6 pt-8 pb-5 text-center">
+              <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 ${darkMode ? "bg-red-500/20" : "bg-red-50"}`}>
+                <Trash2 className="text-red-500" size={28} />
+              </div>
+              <h3 className={`text-lg font-bold mb-2 ${darkMode ? "text-white" : "text-gray-900"}`}>
+                Remove Poster
+              </h3>
+              <p className={`text-sm leading-relaxed ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
+                Are you sure you want to remove{" "}
+                <span className={`font-semibold ${darkMode ? "text-white" : "text-gray-800"}`}>
+                  "{confirmDialog.title}"
+                </span>
+                ?<br />This action cannot be undone.
+              </p>
+            </div>
+
+            {/* Divider */}
+            <div className={`h-px mx-6 ${darkMode ? "bg-gray-700" : "bg-gray-100"}`} />
+
+            {/* Buttons */}
+            <div className="flex gap-3 px-6 py-4">
+              <button
+                onClick={cancelRemove}
+                className={`flex-1 py-2.5 rounded-xl text-sm font-semibold border transition-colors duration-200
+                  ${darkMode ? "border-gray-600 text-gray-300 hover:bg-gray-700" : "border-gray-200 text-gray-600 hover:bg-gray-50"}`}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmRemove}
+                className="flex-1 py-2.5 rounded-xl text-sm font-semibold bg-red-500 hover:bg-red-600 text-white transition-colors duration-200 flex items-center justify-center gap-2"
+              >
+                <Trash2 size={14} />
+                Remove
+              </button>
             </div>
           </div>
         </div>
