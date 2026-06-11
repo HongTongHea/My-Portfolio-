@@ -68,11 +68,15 @@ export function Hero({ darkMode }) {
               onClick={() =>
                 document
                   .getElementById("contact")
-                  .scrollIntoView({ behavior: "smooth" })
+                  ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-full flex items-center justify-center gap-2 hover:bg-indigo-700 transition-colors"
+              className="flex items-center gap-2.5 bg-gradient-to-r from-indigo-600 to-purple-500 text-white hover:opacity-90 text-sm font-medium pl-5 pr-2 py-2 rounded-full"
             >
-              Contact Me <ArrowRight size={20} />
+              Contact Me
+
+              <span className="size-7 rounded-full bg-white flex items-center justify-center">
+                <ArrowRight size={16} className="text-indigo-600" />
+              </span>
             </button>
             <button
               onClick={handleDownloadCV}
