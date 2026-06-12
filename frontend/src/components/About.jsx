@@ -7,9 +7,8 @@ export function About({ darkMode }) {
     <div className="relative overflow-hidden" id="about">
       {/* Background overlay */}
       <div
-        className={`absolute inset-0 ${
-          darkMode ? "bg-gray-900/95" : "bg-white/95"
-        } z-0`}
+        className={`absolute inset-0 ${darkMode ? "bg-gray-900/95" : "bg-white/95"
+          } z-0`}
       />
 
       {/* Main content */}
@@ -18,17 +17,15 @@ export function About({ darkMode }) {
           {/* About Me Content */}
           <div className="w-full md:w-2/3 text-center md:text-left">
             <h1
-              className={`text-3xl sm:text3xl font-bold  ${
-                darkMode ? "text-white" : "text-gray-900"
-              } mb-6`}
+              className={`text-3xl sm:text3xl font-bold  ${darkMode ? "text-white" : "text-gray-900"
+                } mb-6`}
             >
               About Me
             </h1>
 
             <p
-              className={`text-lg sm:text-xl ${
-                darkMode ? "text-gray-300" : "text-gray-600"
-              } mb-6`}
+              className={`text-lg sm:text-xl text-justify ${darkMode ? "text-gray-300" : "text-gray-600"
+                } mb-6`}
             >
               Passionate junior web developer and designer with expertise in
               modern web technologies. I specialize in creating responsive,
@@ -36,9 +33,8 @@ export function About({ darkMode }) {
             </p>
 
             <p
-              className={`text-lg sm:text-xl ${
-                darkMode ? "text-gray-300" : "text-gray-600"
-              } mb-8`}
+              className={`text-lg sm:text-xl text-justify ${darkMode ? "text-gray-300" : "text-gray-600"
+                } mb-8`}
             >
               When I'm not coding, I explore new design trends, contribute to
               open-source projects, or recharge by hiking in nature.
@@ -48,9 +44,8 @@ export function About({ darkMode }) {
             <div className="mt-12">
               <div className="flex items-center gap-2 mb-4">
                 <h2
-                  className={`text-xl font-bold ${
-                    darkMode ? "text-white" : "text-gray-900"
-                  }`}
+                  className={`text-xl font-bold ${darkMode ? "text-white" : "text-gray-900"
+                    }`}
                 >
                   Education & Training
                 </h2>
@@ -80,32 +75,29 @@ export function About({ darkMode }) {
                     color: "bg-green-500",
                   },
                   {
-                    year: "2022–Present",
+                    year: "2022–2026",
                     detail:
-                      "Third-year student at Build Bright University, pursuing a Bachelor's degree in IT.",
+                      "Graduated from Build Bright University (Bachelor's degree IT).",
                     color: "bg-amber-500",
                   },
                 ].map((item, index) => (
                   <div
                     key={index}
-                    className={`relative pl-8 ${
-                      index < 4 ? "pb-5" : ""
-                    } border-l border-gray-200 dark:border-gray-700`}
+                    className={`relative pl-8 ${index < 4 ? "pb-5" : ""
+                      } border-l border-gray-200 dark:border-gray-700`}
                   >
                     <div
                       className={`absolute top-0 left-0 w-3 h-3 -ml-1.5 rounded-full ${item.color}`}
                     ></div>
                     <p
-                      className={`font-medium ${
-                        darkMode ? "text-white" : "text-gray-800"
-                      }`}
+                      className={`font-medium ${darkMode ? "text-white" : "text-gray-800"
+                        }`}
                     >
                       {item.year}
                     </p>
                     <p
-                      className={`${
-                        darkMode ? "text-gray-300" : "text-gray-600"
-                      }`}
+                      className={`${darkMode ? "text-gray-300" : "text-gray-600"
+                        }`}
                     >
                       {item.detail}
                     </p>
@@ -118,9 +110,8 @@ export function About({ darkMode }) {
             <div className="mt-12">
               <div className="flex items-center gap-2 mb-4">
                 <h2
-                  className={`text-xl font-bold ${
-                    darkMode ? "text-white" : "text-gray-900"
-                  }`}
+                  className={`text-xl font-bold ${darkMode ? "text-white" : "text-gray-900"
+                    }`}
                 >
                   Work Experience
                 </h2>
@@ -140,24 +131,21 @@ export function About({ darkMode }) {
                 ].map((item, index) => (
                   <div
                     key={index}
-                    className={`relative pl-8 ${
-                      index < 2 ? "pb-5" : ""
-                    } border-l border-gray-200 dark:border-gray-700`}
+                    className={`relative pl-8 ${index < 2 ? "pb-5" : ""
+                      } border-l border-gray-200 dark:border-gray-700`}
                   >
                     <div
                       className={`absolute top-0 left-0 w-3 h-3 -ml-1.5 rounded-full ${item.color}`}
                     ></div>
                     <p
-                      className={`font-medium ${
-                        darkMode ? "text-white" : "text-gray-800"
-                      }`}
+                      className={`font-medium ${darkMode ? "text-white" : "text-gray-800"
+                        }`}
                     >
                       {item.year}
                     </p>
                     <p
-                      className={`${
-                        darkMode ? "text-gray-300" : "text-gray-600"
-                      }`}
+                      className={`${darkMode ? "text-gray-300" : "text-gray-600"
+                        }`}
                     >
                       {item.detail}
                     </p>
@@ -165,9 +153,8 @@ export function About({ darkMode }) {
                       {item.responsibilities.map((responsibility, i) => (
                         <li
                           key={i}
-                          className={`text-sm ${
-                            darkMode ? "text-gray-400" : "text-gray-500"
-                          }`}
+                          className={`text-sm ${darkMode ? "text-gray-400" : "text-gray-500"
+                            }`}
                         >
                           {responsibility}
                         </li>

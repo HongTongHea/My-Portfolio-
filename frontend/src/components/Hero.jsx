@@ -63,7 +63,7 @@ export function Hero({ darkMode }) {
             professional.
             <br />
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <div className="flex items-center flex-row sm:flex-row justify-center gap-4">
             <button
               onClick={() =>
                 document
@@ -83,7 +83,7 @@ export function Hero({ darkMode }) {
               className={`border-2 ${darkMode
                 ? "border-white text-white hover:bg-white hover:text-gray-900"
                 : "border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white"
-                } px-6 py-3 rounded-full font-medium transition-all`}
+                } px-6 py-2 rounded-full font-medium transition-all`}
             >
               My Resume
             </button>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Sun, Moon, Menu, X } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export function Navigation({
   darkMode,
@@ -24,7 +25,7 @@ export function Navigation({
 
       {/* Desktop Navigation */}
       <div
-        className={`hidden md:flex items-center rounded-full px-2 py-4 gap-2 ${darkMode
+        className={`hidden md:flex items-center rounded-full px-2 py-2 gap-2 ${darkMode
           ? "bg-gray-800 border border-gray-700"
           : "bg-zinc-50 border border-zinc-200"
           }`}
@@ -130,7 +131,7 @@ export function Navigation({
               .getElementById("contact")
               ?.scrollIntoView({ behavior: "smooth" })
           }
-          className="flex items-center gap-2.5 bg-gradient-to-r from-indigo-600 to-purple-500 text-white hover:opacity-90 text-sm font-medium pl-5 pr-2 py-2 rounded-full"
+          className="flex items-center gap-2.5 bg-gradient-to-r from-indigo-600 to-purple-500 text-white hover:opacity-90 text-sm font-medium pl-5 pr-1 py-1 rounded-full"
         >
           Hire Me
 
@@ -218,9 +219,13 @@ export function Navigation({
                 .getElementById("contact")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
-            className="mt-2 flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-500 text-white py-2.5 rounded-full"
+            className="flex items-center gap-2.5 bg-gradient-to-l from-indigo-600 to-purple-500 text-white hover:opacity-90 text-sm font-medium pl-5 pr-2 py-2 rounded-full w-40 "
           >
-            Hire Me
+            Contact Me
+
+            <span className="size-7 rounded-full bg-white flex items-center justify-center">
+              <ArrowRight size={16} className="text-indigo-600" />
+            </span>
           </button>
         </div>
       )}
