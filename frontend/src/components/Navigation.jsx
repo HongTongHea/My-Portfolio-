@@ -103,7 +103,7 @@ export function Navigation({
             : "text-zinc-500 hover:text-zinc-900"
             }`}
         >
-          Contact
+          Contact Me
           <span
             className={`absolute left-1/2 -translate-x-1/2 bottom-0 h-0.5 w-0 transition-all duration-300 group-hover:w-3/4 ${darkMode ? "bg-white" : "bg-indigo-600"
               }`}
